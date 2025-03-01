@@ -6,12 +6,17 @@ const newItem = ref('');
 
 function addItem() {
   if (!newItem.value) return;
+  if (itemList.value.map(item => item.label).includes(newItem.value)) {
+    alert('Item with same name already exists');
+    return;
+  }
   itemList.value.push({
     label: newItem.value,
     count: 0
   });
   newItem.value = '';
 }
+
 
 function decreaseCount(index) {
   if (itemList.value[index].count == 0) return;
